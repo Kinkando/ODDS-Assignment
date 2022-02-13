@@ -168,9 +168,6 @@ function execute(number) {
         childElement.innerText = functionList[i]["text"] + text; // Put result description in innerText
         result.append(childElement); // Append child element into result parent element
 
-        // Generate new tooltiptext
-        // document.querySelector(`.box-${functionList[i]['text'].charAt(0)}`).children[0].innerText = "Input: " + prev + "\n ************************** \nOutput: " + text;
-
         // Generate new tooltiptext input of each function
         document.querySelector(`.box-${functionList[i]['text'].charAt(0)}`).children[0].children[0].innerText = "Input: " + prev;
 
