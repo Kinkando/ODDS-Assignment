@@ -235,7 +235,7 @@ i:hover.spot {
     }
     .input-container {
         position: relative;
-        margin: 20px;
+        margin: 20px 20px 40px 20px;
     }
     #result {
         margin: 0 20px;
@@ -257,7 +257,7 @@ i:hover.spot {
         flex-direction: column;
     }
     .input-container {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         position: relative;
         display: flex;
         align-items: center;
