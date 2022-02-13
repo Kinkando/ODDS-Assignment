@@ -7,43 +7,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ODDS Assignment</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Add Logo in title bar -->
+    <link rel="icon" href="logo.png" type="image/x-icon">
 </head>
 
 <body>
+    <!-- topbar -->
     <div class="input-container">
         <input type="number" class="field-input" id="number" min="0" placeholder=" " value="0">
         <label class="field-label">Number</label>
-        <!-- <button type="submit" onclick="convertNumber()" class="field-submit">Submit</button> -->
     </div>
 
-    <div id="result">
+    <!-- result label -->
+    <div id="result"></div>
 
-    </div>
-
+    <!-- box container -->
     <div class="group-box">
         <div class="group-box-1">
-            <i class="box-A">A</i>
-            <div class="arrow"></div>
-            <i class="box-B">B</i>
-            <div class="arrow"></div>
-            <i class="box-C">C</i>
+            <i class="box-A forward">A
+                <span class="tooltiptext">
+                    <p></p>
+                    <hr>
+                    <p></p>
+                </span>
+            </i>
+            <div class="arrow" id="arrow-2"></div>
+            <i class="box-B forward">B
+                <span class="tooltiptext">
+                    <p></p>
+                    <hr>
+                    <p></p>
+                </span>
+            </i>
+            <div class="arrow" id="arrow-3"></div>
+            <i class="box-C forward">C
+                <span class="tooltiptext">
+                    <p></p>
+                    <hr>
+                    <p></p>
+                </span>
+            </i>
         </div>
         <div class="group-box-2">
-            <i class="box-input">Input</i>
-            <div class="arrow slope-top-right"></div>
-            <div class="arrow slope-top-left"></div>
+            <div class="left-position">
+                <i class="box-input spot">Input
+                    <span class="tooltiptext"></span>
+                </i>
+                <div class="arrow slope-top-right" id="arrow-1"></div>
+                <div class="arrow slope-top-left" id="arrow-8"></div>
+            </div>
             <div class="right-position">
-                <i class="box-result">Result</i>
-                <div class="arrow slope-bottom-right"></div>
-                <div class="arrow slope-bottom-left"></div>
+                <i class="box-result spot">Result
+                    <span class="tooltiptext"></span>
+                </i>
+                <div class="arrow slope-bottom-right" id="arrow-4"></div>
+                <div class="arrow slope-bottom-left" id="arrow-5"></div>
             </div>
         </div>
         <div class="group-box-3">
-            <i class="box-F">F</i>
-            <div class="arrow reverse"></div>
-            <i class="box-E">E</i>
-            <div class="arrow reverse"></div>
-            <i class="box-D">D</i>
+            <i class="box-F backward">F
+                <span class="tooltiptext">
+                    <p></p>
+                    <hr>
+                    <p></p>
+                </span>
+            </i>
+            <div class="arrow reverse" id="arrow-7"></div>
+            <i class="box-E backward">E
+                <span class="tooltiptext">
+                    <p></p>
+                    <hr>
+                    <p></p>
+                </span>
+            </i>
+            <div class="arrow reverse" id="arrow-6"></div>
+            <i class="box-D backward">D
+                <span class="tooltiptext">
+                    <p></p>
+                    <hr>
+                    <p></p>
+                </span>
+            </i>
         </div>
     </div>
     <script src="script.js"></script>

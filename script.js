@@ -1,18 +1,19 @@
+// 12 => Odd1Even2
 function A(num) {
-    // Check only positive integer format and must not integer out of bound
-    console.log(num);
+    // Check only positive integer type and must not integer out of bound
     if (parseInt(num) > Number.MAX_SAFE_INTEGER || parseInt(num) < 0) {
         return "invalid input";
     }
     let numText = num.toString(); // Cast to String in order to iteration with charAt
     let text = ""; // Keep result of this function
     for (let i = 0; i < numText.length; i++) {
-        // Check even or odd number and insert that text in front of number
+        // Cast character to integer type and check even or odd number, then insert that text in front of number
         text += (parseInt(numText.charAt(i) - '0') % 2 == 0 ? "Even" : "Odd") + numText.charAt(i);
     }
     return text;
 }
 
+// Odd1Even2 => DDO1NEVE2
 function B(text) {
     let prev = 0; // Keep previous position (start index of text)
     let reverseText = ""; // Keep result that reverse text from parameter and change to upper case
@@ -20,19 +21,16 @@ function B(text) {
     for (let i = 0; i < text.length; i++) {
         // Check index of integer in text
         if (isNumber(text.charAt(i))) {
-
-            /* Substring only alphabets, split string to array, reverse all elements, 
-             * join all elements to String and change letter to upper case, concat with digit
-             */
-            reverseText += text.slice(prev, i).split('').reverse().join('').toUpperCase() + text.charAt(i);
-
-            prev = i + 1; // Shift next start text index
+            // reverse all letters and change all letters to upper case, then concat with digit
+            reverseText += reverseOrder(text.slice(prev, i)).toUpperCase() + text.charAt(i);
+            prev = i + 1; // Shift next start alphabet index
         }
     }
     return reverseText;
-    // return text.replaceAll("Odd", "DDO").repalceAll("Even", "NEVE");
+    // return text.replaceAll("Odd", "DDO").replaceAll("Even", "NEVE");
 }
 
+// DDO1NEVE2 => 6868791786986692
 function C(reverseText) {
     let ascii = ""; // Keep result of convert each character to ASCII Code
     for (let i = 0; i < reverseText.length; i++) {
@@ -43,14 +41,16 @@ function C(reverseText) {
         }
     }
     return ascii;
+    // return reverseText.replaceAll("DDO", "686879").replaceAll("NEVE", "78698669");
 }
 
+// 6868791786986692 => DDO1NEVE2
 function D(ascii) {
     // ascii = ascii.toString();
     let reverseText = ""; // Keep result of convert ASCII Code to reverse text 
     const numType = ["DDO", "NEVE"]; // Array for check converted text
     for (let i = 0; i < ascii.length;) {
-        let type = ""; // Keep only text such as DDO or NEVE
+        let type = ""; // Keep only alphabet such as DDO or NEVE
         while (!numType.includes(type)) {
             // Fixed 2 digits position of ASCII code and convert to Character
             type += String.fromCharCode(parseInt(ascii.slice(i++, ++i)));
@@ -58,26 +58,27 @@ function D(ascii) {
         reverseText += type + (ascii.charAt((i++)) - '0'); // Concat with type and digit, then shift iteration index
     }
     return reverseText;
+    // return ascii.replaceAll("686879", "DDO").replaceAll("78698669", "NEVE");
 }
 
+// DDO1NEVE2 => Odd1Even2
 function E(reverseText) {
     let prev = 0;
     let text = ""; // Keep result of convert reverse text to traditional text
     for (let i = 0; i < reverseText.length; i++) {
         // Focus only integer and ignore all alphabets
         if (isNumber(reverseText.charAt(i))) {
-            /* Substring only alphabets, split string to array, reverse all elements, 
-             * join all elements to String and change letter to lower case, concat with digit
-             */
-            let word = reverseText.slice(prev, i).split('').reverse().join('').toLowerCase() + reverseText.charAt(i);
-
-            text += word.charAt(0).toUpperCase() + word.slice(1); // Change to first letter to Capitalize letter
-            prev = i + 1; // Shift next start text index
+            // reverse all letters and change all letters to lower case, then concat with digit
+            let word = reverseOrder(reverseText.slice(prev, i)).toLowerCase() + reverseText.charAt(i);
+            text += word.charAt(0).toUpperCase() + word.slice(1); // Change first alphabet to Capitalize letter
+            prev = i + 1; // Shift next start alphabet index
         }
     }
     return text;
+    // return reverseText.replaceAll("DDO", "Odd").replaceAll("NEVE", "Even");
 }
 
+// Odd1Even2 => 12
 function F(text) {
     let numText = ""; // Cut all alphabets and keep only digits
     for (let i = 0; i < text.length; i++) {
@@ -87,6 +88,16 @@ function F(text) {
         }
     }
     return numText;
+    // return text.replaceAll("Odd", "").replaceAll("Even", "");
+}
+
+// iteration with reverse order to reverse all letters
+function reverseOrder(text) {
+    let reverseText = "";
+    for (let i = text.length - 1; i >= 0; i--) {
+        reverseText += text.charAt(i);
+    }
+    return reverseText;
 }
 
 // Check number format of Character
@@ -94,94 +105,98 @@ function isNumber(letter) {
     return Number.isInteger(parseInt(letter - '0'));
 }
 
-function convertNumber() {
-    let number = document.querySelector('#number').value;
-    // Check format must be positive integer (include 0) only and not empty
-    if (number.length == 0 || number < 0 || number > Number.MAX_SAFE_INTEGER) {
-        alert('invalid input');
-        return;
-    }
-    alert(number);
-}
-
-function execute() {
+// Validate input number field before call execute functions
+function validateInput() {
     let number = document.querySelector('#number');
-    if (number.value.length == 0 || number.value < 0 || number.value.toString() == '-0') {
+    // Check decimal point and remove it (Accept only unsigned integer)
+    if (number.value.includes('.')) {
+        let dotIndex = number.value.indexOf('.');
+        number.value = number.value.slice(0, dotIndex) + number.value.slice(dotIndex + 1);
+    }
+    // Minimum of number is 0. If delete typing to become empty input field, then autofill with 0 digit
+    if (number.value.length == 0 || number.value < 0) {
         number.value = 0;
     }
-    // integer out of bounds
+    // Integer out of bounds, then set number with maximum of integer
     else if (number.value > Number.MAX_SAFE_INTEGER) {
         number.value = Number.MAX_SAFE_INTEGER;
     }
-    // when start with 0 and follow with another, then remove 0
-    number.value = parseInt(number.value);
-    displayResult(number.value);
+    number.value = parseInt(number.value); // Convert value to integer type (remove 0 in ahead)
+    execute(number.value); // Call function to generate all child elements of result
 }
 
-function displayResult(number) {
+// Execute all functions (A, B, ..., F) and generate all child elements of result
+function execute(number) {
     let result = document.querySelector('#result');
-    removeChildren(result);
+    removeChildren(result); // Remove all child elements of result
 
-    let text = A(number);
-    let resultA = document.createElement('div');
-    resultA.innerText = "A: " + text;
+    // Keep array of map that includes text and function in order to iteration
+    const functionList = [{
+            "text": "A: ",
+            "function": A,
+        },
+        {
+            "text": "B: ",
+            "function": B,
+        },
+        {
+            "text": "C: ",
+            "function": C,
+        },
+        {
+            "text": "D: ",
+            "function": D,
+        },
+        {
+            "text": "E: ",
+            "function": E,
+        },
+        {
+            "text": "F: ",
+            "function": F,
+        },
+    ];
 
-    text = B(text);
-    let resultB = document.createElement('div');
-    resultB.innerText = "B: " + text;
+    // Generate new tooltiptext of input box container
+    document.querySelector('.box-input').children[0].innerText = number;
 
-    text = C(text);
-    let resultC = document.createElement('div');
-    resultC.innerText = "C: " + text;
+    let text = number; // Keep result of execute with each function
+    let prev = text;
+    for (let i = 0; i < functionList.length; i++) {
+        text = functionList[i]["function"](text); // Execute each function
+        let childElement = document.createElement('div'); // Create child element of result with div tag
+        childElement.innerText = functionList[i]["text"] + text; // Put result description in innerText
+        result.append(childElement); // Append child element into result parent element
 
-    text = D(text);
-    let resultD = document.createElement('div');
-    resultD.innerText = "D: " + text;
+        // Generate new tooltiptext
+        // document.querySelector(`.box-${functionList[i]['text'].charAt(0)}`).children[0].innerText = "Input: " + prev + "\n ************************** \nOutput: " + text;
 
-    text = E(text);
-    let resultE = document.createElement('div');
-    resultE.innerText = "E: " + text;
+        // Generate new tooltiptext input of each function
+        document.querySelector(`.box-${functionList[i]['text'].charAt(0)}`).children[0].children[0].innerText = "Input: " + prev;
 
-    text = F(text);
-    let resultF = document.createElement('div');
-    resultF.innerText = "F: " + text;
+        // Generate new tooltiptext output of each function
+        document.querySelector(`.box-${functionList[i]['text'].charAt(0)}`).children[0].children[2].innerText = "Output: " + text;
+        prev = text; // previousText = currentText
 
-    result.appendChild(resultA);
-    result.appendChild(resultB);
-    result.appendChild(resultC);
-    result.appendChild(resultD);
-    result.appendChild(resultE);
-    result.appendChild(resultF);
+        if (i == functionList.length / 2 - 1) {
+            // Generate new tooltiptext of result box container
+            document.querySelector('.box-result').children[0].innerText = text;
+        }
+    }
 }
 
-// iteration remove firstChild
+// Iteration remove firstChild until all child elements is empty
 function removeChildren(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
 }
 
-document.querySelector('#number').addEventListener('keyup', execute);
+// Create initialize function that run once time throughout program
+function init() {
+    // Add EventListener when typing anything in input number field ('keyup' event)
+    document.querySelector('#number').addEventListener('keyup', validateInput);
+    validateInput(); // Execute with default value (0) in input number field
+}
 
-// let number = 123;
-// console.log("Input: " + number);
-
-// let text = A(number);
-// console.log("A: " + text);
-
-// text = B(text);
-// console.log("B: " + text);
-
-// text = C(text);
-// console.log("C: " + text);
-
-// text = D(text);
-// console.log("D: " + text);
-
-// text = E(text);
-// console.log("E: " + text);
-
-// text = F(text);
-// console.log("F: " + text);
-
-// console.log("Output: " + text);
+init(); // Call init function in first and once time when starting program

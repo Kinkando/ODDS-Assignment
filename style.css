@@ -1,16 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap');
 :root {
     --arrow-width: 80px;
     --arrow-height: 10px;
     --arrow-line-height: 5px;
     --arrow-head-width: 20px;
     --arrow-line-width: calc(var(--arrow-width) - var(--arrow-head-width));
-    /* --arrow-line-ratio: 0.75; */
-    /* --arrow-line-width: calc(var(--arrow-width) * var(--arrow-line-ratio)); */
-    /* --arrow-head-ratio: calc(1 - var(--arrow-line-ratio)); */
-    /* --arrow-head-width: calc(var(--arrow-width) * var(--arrow-head-ratio)); */
-    --background-color: #333;
-    --foreground-color: #fff;
-    --border-radius: 15px;
     --normal-font-size: 1rem;
     --small-font-size: .75rem;
 }
@@ -22,14 +16,8 @@
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    /* overflow: auto; */
+    font-family: 'Prompt', sans-serif;
+    font-weight: bold;
 }
 
 input::-webkit-outer-spin-button,
@@ -44,13 +32,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.input-container {
-    margin-bottom: 20px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
 .field-input {
     /* width fit with maximum of safe integer */
     width: 174px;
@@ -60,17 +41,18 @@ input[type=number] {
     border-radius: 5px;
     padding: 10px 15px;
     font-size: var(--normal-font-size);
-    border: 1px solid #bbb;
+    border: 1px solid rgb(170, 170, 170);
     z-index: 1;
+    box-shadow: 2px 2px 3px 0 rgb(128, 128, 128);
 }
 
 .field-label {
     position: absolute;
-    padding: 4px .25rem;
+    padding: 1px .25rem;
     left: .8rem;
     top: .5rem;
     background-color: #fff;
-    color: var(--background-color);
+    color: #333;
     font-size: var(--normal-font-size);
     transition: .2s;
     z-index: 0;
@@ -78,10 +60,8 @@ input[type=number] {
 
 .field-input:focus~.field-label {
     top: -.7rem;
-    /* left: .8rem; */
     color: blue;
     font-size: var(--small-font-size);
-    font-weight: 500;
     z-index: 2;
 }
 
@@ -92,10 +72,9 @@ input[type=number] {
 
 .field-input:not(:placeholder-shown).field-input:not(:focus)~.field-label {
     top: -.7rem;
-    /* left: .8rem; */
-    color: var(--background-color);
+    color: #333;
     font-size: var(--small-font-size);
-    font-weight: 500;
+    /* font-weight: 500; */
     z-index: 2;
 }
 
@@ -150,20 +129,25 @@ input[type=number] {
 }
 
 .group-box-3 i {
-    background-color: red;
+    background-color: pink;
     border-radius: 50%;
 }
 
 i {
+    font-style: normal;
     width: 50px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    box-shadow: 2px 2px 3px 0 black;
+    z-index: 4;
 }
 
 .arrow {
     width: var(--arrow-width);
+    z-index: 3;
 }
 
 .reverse {
@@ -217,9 +201,6 @@ i {
     top: -35px;
     right: 30px;
     --arrow-width: 100px;
-    --arrow-height: 10px;
-    --arrow-line-height: 5px;
-    --arrow-head-width: 20px;
     --arrow-line-width: calc(var(--arrow-width) - var(--arrow-head-width));
 }
 
@@ -229,8 +210,109 @@ i {
     top: 65px;
     right: 30px;
     --arrow-width: 100px;
-    --arrow-height: 10px;
-    --arrow-line-height: 5px;
-    --arrow-head-width: 20px;
     --arrow-line-width: calc(var(--arrow-width) - var(--arrow-head-width));
+}
+
+i:hover.forward {
+    background-color: rgb(0, 165, 77);
+    color: white;
+}
+
+i:hover.backward {
+    background-color: rgb(255, 73, 103);
+    color: white;
+}
+
+i:hover.spot {
+    background-color: orange;
+}
+
+@media (max-width: 750px),
+(max-height: 550px) {
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    .input-container {
+        position: relative;
+        margin: 20px;
+    }
+    #result {
+        margin: 0 20px;
+        white-space: nowrap;
+    }
+    .tooltiptext {
+        display: none;
+    }
+}
+
+@media (min-width: 751px) and (min-height: 551px) {
+    body {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .input-container {
+        margin-bottom: 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    #result {
+        white-space: nowrap;
+    }
+    .tooltiptext {
+        visibility: hidden;
+        bottom: 100%;
+        width: 240px;
+        left: 50%;
+        /* center alignment from half of width */
+        margin-left: -120px;
+        background-color: black;
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 5;
+        /* auto new line */
+        word-wrap: break-word;
+        padding: 10px;
+        /* move up depend on size of bottom arrow tooltiptext */
+        transform: translateY(-5px);
+    }
+    .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: black transparent transparent transparent;
+    }
+    .tooltiptext hr {
+        margin: 5px 0;
+        border: none;
+        width: 100%;
+        height: 1px;
+        background-color: white;
+    }
+    i:hover .tooltiptext {
+        visibility: visible;
+    }
+    i:hover {
+        cursor: pointer;
+    }
+    .tooltiptext {
+        opacity: 0;
+        transition: opacity .5s ease-out;
+    }
+    i:hover .tooltiptext {
+        opacity: 1;
+    }
 }
