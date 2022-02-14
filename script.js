@@ -1,5 +1,7 @@
 // Add letter (Odd or Even) depend on type of integer (EX: 12 => Odd1Even2)
 function A(num) {
+    num = parseInt(num); // Maybe its float, then cast to integer
+
     // Validate input format before execute
     if (!verify('A', num)) {
         return "invalid input";
@@ -141,7 +143,7 @@ function validateInput() {
         number.value = Number.MAX_SAFE_INTEGER;
     }
     number.value = parseInt(number.value); // Convert value to integer type (remove 0 in ahead)
-    execute(number.value); // Call function to generate all child elements of result
+    execute(parseInt(number.value)); // Call function to generate all child elements of result
 }
 
 // Execute all functions (A, B, ..., F) and generate all child elements of result
@@ -217,7 +219,7 @@ function isUnsignedInteger(text) {
 function verify(name, text) {
     switch (name) {
         case 'A':
-            return isUnsignedInteger(text); // Accepted only unsigned int type
+            return !(isNaN(text) || text < 0 || text > Number.MAX_SAFE_INTEGER); // Accepted only unsigned int type
 
         case 'B':
         case 'C':
