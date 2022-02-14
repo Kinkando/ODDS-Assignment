@@ -16,8 +16,6 @@
 }
 
 body {
-    width: 100%;
-    height: 100%;
     font-family: 'Prompt', sans-serif;
     font-weight: bold;
 }
@@ -36,6 +34,7 @@ input[type=number] {
 
 .input-container {
     margin: 40px 0;
+    min-width: 570px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -58,17 +57,13 @@ input[type=number] {
 .field-label {
     position: absolute;
     padding: 1px .25rem;
-    left: .8rem;
+    left: 50%;
     top: .5rem;
     background-color: #fff;
     color: #333;
     font-size: var(--normal-font-size);
     transition: .2s;
     z-index: 0;
-}
-
-.field-label {
-    left: 50%;
     transform: translateX(-74px);
 }
 
@@ -92,9 +87,9 @@ input[type=number] {
 }
 
 .result-container {
-    /* width: intrinsic; */
     display: flex;
     justify-content: center;
+    min-width: 570px;
 }
 
 #result {
@@ -104,6 +99,10 @@ input[type=number] {
 
 #result div {
     margin: 10px 0;
+}
+
+.box-container {
+    padding-bottom: 20px;
 }
 
 .group-box {
@@ -167,6 +166,13 @@ i {
     position: relative;
     box-shadow: 2px 2px 3px 0 black;
     z-index: 4;
+    /* disable highlight text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .arrow {
@@ -308,42 +314,33 @@ i:hover .tooltiptext {
     opacity: 1;
 }
 
-@media (max-width: 750px),
-(max-height: 650px) {
-    i {
-        /* disable highlight text */
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    .input-container {
-        width: 570px;
-    }
-    .result-container {
-        width: 570px;
-    }
-    .group-box {
-        padding: 0 20px;
-    }
+@media (max-width: 585px) {
+    /* Hidden bottom arrow of tooltiptext (in smartphone) */
     .tooltiptext::after {
         display: none;
     }
+}
+
+@media (max-width: 750px) {
+    /* Change position of tooltiptext (in smartphone and tablet) */
+    .group-box {
+        padding: 0 20px;
+    }
+    /* half of tooltiptext width, plus half of circle width, plus gap */
     .box-input>.tooltiptext {
-        /* half of tooltiptext width, plus half of circle width, plus gap in order to right side next to box-input */
+        /* right side next to box-input */
         transform: translate(150px);
         bottom: 0;
     }
     .box-result>.tooltiptext {
-        /* half of tooltiptext width, plus half of circle width, plus gap in order to left side of box-result */
+        /* left side of box-result */
         transform: translate(-150px);
         bottom: 0;
     }
 }
 
-@media (min-width: 751px) and (min-height: 651px) {
+@media (min-width: 586px) {
+    /* Center alignment of box-container */
     .box-container {
         display: flex;
         justify-content: center;
