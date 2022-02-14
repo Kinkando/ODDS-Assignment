@@ -314,13 +314,6 @@ i:hover .tooltiptext {
     opacity: 1;
 }
 
-@media (max-width: 585px) {
-    /* Hidden bottom arrow of tooltiptext (in smartphone) */
-    .tooltiptext::after {
-        display: none;
-    }
-}
-
 @media (max-width: 750px) {
     /* Change position of tooltiptext (in smartphone and tablet) */
     .group-box {
@@ -336,6 +329,9 @@ i:hover .tooltiptext {
         /* left side of box-result */
         transform: translate(-150px);
         bottom: 0;
+    }
+    .tooltiptext::after {
+        display: none;
     }
 }
 
