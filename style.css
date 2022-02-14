@@ -78,8 +78,8 @@ input[type=number] {
     z-index: 2;
 }
 
-.field-submit {
-    margin-left: 10px;
+#result div {
+    margin: 10px 0;
 }
 
 .group-box {
@@ -227,11 +227,69 @@ i:hover.spot {
     background-color: orange;
 }
 
+.tooltiptext {
+    visibility: hidden;
+    bottom: 100%;
+    width: 240px;
+    left: 50%;
+    /* center alignment from half of width */
+    margin-left: -120px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 5;
+    /* auto new line */
+    word-wrap: break-word;
+    padding: 10px;
+    /* move up depend on size of bottom arrow tooltiptext */
+    transform: translateY(-5px);
+}
+
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltiptext hr {
+    margin: 5px 0;
+    border: none;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+
+i:hover .tooltiptext {
+    visibility: visible;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.tooltiptext {
+    opacity: 0;
+    transition: opacity .5s ease-out;
+}
+
+i:hover .tooltiptext {
+    opacity: 1;
+}
+
 @media (max-width: 750px),
 (max-height: 550px) {
     body {
         height: 100%;
         width: 100%;
+        padding: 20px;
     }
     .input-container {
         position: relative;
@@ -239,10 +297,20 @@ i:hover.spot {
     }
     #result {
         margin: 0 20px;
-        white-space: nowrap;
+        word-wrap: break-word;
     }
-    .tooltiptext {
+    .tooltiptext::after {
         display: none;
+    }
+    .box-input>.tooltiptext {
+        /* half of tooltiptext width, plus half of circle width, plus gap in order to right side next to box-input */
+        transform: translate(150px);
+        bottom: 0;
+    }
+    .box-result>.tooltiptext {
+        /* half of tooltiptext width, plus half of circle width, plus gap in order to left side of box-result */
+        transform: translate(-150px);
+        bottom: 0;
     }
 }
 
@@ -264,55 +332,5 @@ i:hover.spot {
     }
     #result {
         white-space: nowrap;
-    }
-    .tooltiptext {
-        visibility: hidden;
-        bottom: 100%;
-        width: 240px;
-        left: 50%;
-        /* center alignment from half of width */
-        margin-left: -120px;
-        background-color: black;
-        color: white;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-        position: absolute;
-        z-index: 5;
-        /* auto new line */
-        word-wrap: break-word;
-        padding: 10px;
-        /* move up depend on size of bottom arrow tooltiptext */
-        transform: translateY(-5px);
-    }
-    .tooltiptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: black transparent transparent transparent;
-    }
-    .tooltiptext hr {
-        margin: 5px 0;
-        border: none;
-        width: 100%;
-        height: 1px;
-        background-color: white;
-    }
-    i:hover .tooltiptext {
-        visibility: visible;
-    }
-    i:hover {
-        cursor: pointer;
-    }
-    .tooltiptext {
-        opacity: 0;
-        transition: opacity .5s ease-out;
-    }
-    i:hover .tooltiptext {
-        opacity: 1;
     }
 }
