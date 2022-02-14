@@ -1,11 +1,10 @@
 // Add letter (Odd or Even) depend on type of integer (EX: 12 => Odd1Even2)
 function A(num) {
-    num = parseInt(num); // Maybe its float, then cast to integer
-
     // Validate input format before execute
-    if (!verify('A', num)) {
-        return "invalid input";
-    }
+    // if (!verify('A', num)) {
+    //     return "invalid input";
+    // }
+
     let numText = num.toString(); // Cast to String in order to iteration with charAt
     let text = ""; // Keep result of this function
     for (let i = 0; i < numText.length; i++) {
@@ -18,9 +17,9 @@ function A(num) {
 // Reverse letter and change alphabet to upper case (EX: Odd1Even2 => DDO1NEVE2)
 function B(text) {
     // Validate input format before execute
-    if (!verify('B', text)) {
-        return "invalid input";
-    }
+    // if (!verify('B', text)) {
+    //     return "invalid input";
+    // }
 
     let prev = 0; // Keep previous position (start index of text)
     let reverseText = ""; // Keep result that reverse text from parameter and change to upper case
@@ -39,9 +38,9 @@ function B(text) {
 // Convert Character to ASCII Code (EX: DDO1NEVE2 => 6868791786986692)
 function C(reverseText) {
     // Validate input format before execute
-    if (!verify('C', reverseText)) {
-        return "invalid input";
-    }
+    // if (!verify('C', reverseText)) {
+    //     return "invalid input";
+    // }
 
     let ascii = ""; // Keep result of convert each character to ASCII Code
     for (let i = 0; i < reverseText.length; i++) {
@@ -57,9 +56,9 @@ function C(reverseText) {
 // Convert ASCII code to Character (EX: 6868791786986692 => DDO1NEVE2)
 function D(ascii) {
     // Validate input format before execute
-    if (!verify('D', ascii)) {
-        return "invalid input";
-    }
+    // if (!verify('D', ascii)) {
+    //     return "invalid input";
+    // }
 
     let reverseText = ""; // Keep result of convert ASCII Code to reverse text 
     const numType = ["DDO", "NEVE"]; // Array for check converted text
@@ -77,9 +76,9 @@ function D(ascii) {
 // Reverse letter and change alphabet to Capital letter (EX: DDO1NEVE2 => Odd1Even2)
 function E(reverseText) {
     // Validate input format before execute
-    if (!verify('E', reverseText)) {
-        return "invalid input";
-    }
+    // if (!verify('E', reverseText)) {
+    //     return "invalid input";
+    // }
 
     let prev = 0;
     let text = ""; // Keep result of convert reverse text to traditional text
@@ -98,9 +97,9 @@ function E(reverseText) {
 // Cut String Odd and Even (EX: Odd1Even2 => 12)
 function F(text) {
     // Validate input format before execute
-    if (!verify('F', text)) {
-        return "invalid input";
-    }
+    // if (!verify('F', text)) {
+    //     return "invalid input";
+    // }
 
     let numText = ""; // Cut all alphabets and keep only digits
     for (let i = 0; i < text.length; i++) {
@@ -143,7 +142,7 @@ function validateInput() {
         number.value = Number.MAX_SAFE_INTEGER;
     }
     number.value = parseInt(number.value); // Convert value to integer type (remove 0 in ahead)
-    execute(parseInt(number.value)); // Call function to generate all child elements of result
+    execute(number.value); // Call function to generate all child elements of result
 }
 
 // Execute all functions (A, B, ..., F) and generate all child elements of result
@@ -219,7 +218,7 @@ function isUnsignedInteger(text) {
 function verify(name, text) {
     switch (name) {
         case 'A':
-            return !(isNaN(text) || text < 0 || text > Number.MAX_SAFE_INTEGER); // Accepted only unsigned int type
+            return isUnsignedInteger(text); // Accepted only unsigned int type
 
         case 'B':
         case 'C':
@@ -230,7 +229,6 @@ function verify(name, text) {
             const typeConst = name == 'D' ? ['686879', '78698669'] :
                 name == 'B' || name == 'F' ? ['Odd', 'Even'] : ['DDO', 'NEVE'];
             let typeList = []; // Keep only type (Odd/Even) or (DDO/NEVE) depend on typeConst
-
             // text remains have (Odd/Even) or (DDO/NEVE) letter
             while (text.includes(typeConst[0]) || text.includes(typeConst[1])) {
                 let oddIndex = text.indexOf(typeConst[0]); // firstIndex of Odd or DDO
