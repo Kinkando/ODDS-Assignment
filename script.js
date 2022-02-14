@@ -32,7 +32,6 @@ function B(text) {
         }
     }
     return reverseText;
-    // return text.replaceAll("Odd", "DDO").replaceAll("Even", "NEVE");
 }
 
 // Convert Character to ASCII Code (EX: DDO1NEVE2 => 6868791786986692)
@@ -51,7 +50,6 @@ function C(reverseText) {
         }
     }
     return ascii;
-    // return reverseText.replaceAll("DDO", "686879").replaceAll("NEVE", "78698669");
 }
 
 // Convert ASCII code to Character (EX: 6868791786986692 => DDO1NEVE2)
@@ -61,7 +59,6 @@ function D(ascii) {
         return "invalid input";
     }
 
-    // ascii = ascii.toString();
     let reverseText = ""; // Keep result of convert ASCII Code to reverse text 
     const numType = ["DDO", "NEVE"]; // Array for check converted text
     for (let i = 0; i < ascii.length;) {
@@ -73,7 +70,6 @@ function D(ascii) {
         reverseText += type + (ascii.charAt((i++)) - '0'); // Concat with type and digit, then shift iteration index
     }
     return reverseText;
-    // return ascii.replaceAll("686879", "DDO").replaceAll("78698669", "NEVE");
 }
 
 // Reverse letter and change alphabet to Capital letter (EX: DDO1NEVE2 => Odd1Even2)
@@ -95,7 +91,6 @@ function E(reverseText) {
         }
     }
     return text;
-    // return reverseText.replaceAll("DDO", "Odd").replaceAll("NEVE", "Even");
 }
 
 // Cut String Odd and Even (EX: Odd1Even2 => 12)
@@ -112,8 +107,7 @@ function F(text) {
             numText += text.charAt(i); // keep only digit
         }
     }
-    return numText;
-    // return text.replaceAll("Odd", "").replaceAll("Even", "");
+    return parseInt(numText);
 }
 
 // iteration with reverse order to reverse all letters
