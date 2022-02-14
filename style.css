@@ -35,7 +35,7 @@ input[type=number] {
 }
 
 .input-container {
-    margin: 40px;
+    margin: 40px 0;
     position: relative;
     display: flex;
     justify-content: center;
@@ -88,14 +88,11 @@ input[type=number] {
     top: -.7rem;
     color: #333;
     font-size: var(--small-font-size);
-    /* font-weight: 500; */
     z-index: 2;
 }
 
 .result-container {
-    /* display: inline-block; */
     /* width: intrinsic; */
-    /* width: 100%; */
     display: flex;
     justify-content: center;
 }
@@ -313,6 +310,21 @@ i:hover .tooltiptext {
 
 @media (max-width: 750px),
 (max-height: 650px) {
+    i {
+        /* disable highlight text */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .input-container {
+        width: 570px;
+    }
+    .result-container {
+        width: 570px;
+    }
     .group-box {
         padding: 0 20px;
     }
