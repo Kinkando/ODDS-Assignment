@@ -16,82 +16,86 @@
 </head>
 
 <body>
-    <!-- topbar -->
+    <!-- input container -->
     <div class="input-container">
         <input type="number" class="field-input" id="number" min="0" placeholder=" " value="0">
         <label class="field-label">Number</label>
     </div>
 
-    <!-- result label -->
-    <div id="result"></div>
+    <!-- result container -->
+    <div class="result-container">
+        <div id="result"></div>
+    </div>
 
     <!-- box container -->
-    <div class="group-box">
-        <div class="group-box-1">
-            <i class="box-A forward">A
-                <span class="tooltiptext">
-                    <p></p>
-                    <hr>
-                    <p></p>
-                </span>
-            </i>
-            <div class="arrow" id="arrow-2"></div>
-            <i class="box-B forward">B
-                <span class="tooltiptext">
-                    <p></p>
-                    <hr>
-                    <p></p>
-                </span>
-            </i>
-            <div class="arrow" id="arrow-3"></div>
-            <i class="box-C forward">C
-                <span class="tooltiptext">
-                    <p></p>
-                    <hr>
-                    <p></p>
-                </span>
-            </i>
-        </div>
-        <div class="group-box-2">
-            <div class="left-position">
-                <i class="box-input spot">Input
-                    <span class="tooltiptext"></span>
+    <div class="box-container">
+        <div class="group-box">
+            <div class="group-box-1">
+                <i class="box-A forward">A
+                    <span class="tooltiptext">
+                        <p></p>
+                        <hr>
+                        <p></p>
+                    </span>
                 </i>
-                <div class="arrow slope-top-right" id="arrow-1"></div>
-                <div class="arrow slope-top-left" id="arrow-8"></div>
-            </div>
-            <div class="right-position">
-                <i class="box-result spot">Result
-                    <span class="tooltiptext"></span>
+                <div class="arrow" id="arrow-2"></div>
+                <i class="box-B forward">B
+                    <span class="tooltiptext">
+                        <p></p>
+                        <hr>
+                        <p></p>
+                    </span>
                 </i>
-                <div class="arrow slope-bottom-right" id="arrow-4"></div>
-                <div class="arrow slope-bottom-left" id="arrow-5"></div>
+                <div class="arrow" id="arrow-3"></div>
+                <i class="box-C forward">C
+                    <span class="tooltiptext">
+                        <p></p>
+                        <hr>
+                        <p></p>
+                    </span>
+                </i>
             </div>
-        </div>
-        <div class="group-box-3">
-            <i class="box-F backward">F
-                <span class="tooltiptext">
-                    <p></p>
-                    <hr>
-                    <p></p>
-                </span>
-            </i>
-            <div class="arrow reverse" id="arrow-7"></div>
-            <i class="box-E backward">E
-                <span class="tooltiptext">
-                    <p></p>
-                    <hr>
-                    <p></p>
-                </span>
-            </i>
-            <div class="arrow reverse" id="arrow-6"></div>
-            <i class="box-D backward">D
-                <span class="tooltiptext">
-                    <p></p>
-                    <hr>
-                    <p></p>
-                </span>
-            </i>
+            <div class="group-box-2">
+                <div class="left-position">
+                    <i class="box-input spot">Input
+                        <span class="tooltiptext"></span>
+                    </i>
+                    <div class="arrow slope-top-right" id="arrow-1"></div>
+                    <div class="arrow slope-top-left" id="arrow-8"></div>
+                </div>
+                <div class="right-position">
+                    <i class="box-result spot">Result
+                        <span class="tooltiptext"></span>
+                    </i>
+                    <div class="arrow slope-bottom-right" id="arrow-4"></div>
+                    <div class="arrow slope-bottom-left" id="arrow-5"></div>
+                </div>
+            </div>
+            <div class="group-box-3">
+                <i class="box-F backward">F
+                    <span class="tooltiptext">
+                        <p></p>
+                        <hr>
+                        <p></p>
+                    </span>
+                </i>
+                <div class="arrow reverse" id="arrow-7"></div>
+                <i class="box-E backward">E
+                    <span class="tooltiptext">
+                        <p></p>
+                        <hr>
+                        <p></p>
+                    </span>
+                </i>
+                <div class="arrow reverse" id="arrow-6"></div>
+                <i class="box-D backward">D
+                    <span class="tooltiptext">
+                        <p></p>
+                        <hr>
+                        <p></p>
+                    </span>
+                </i>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
